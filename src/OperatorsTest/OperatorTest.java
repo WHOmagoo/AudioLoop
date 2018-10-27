@@ -55,4 +55,35 @@ class OperatorTest {
 
     }
 
+    @org.junit.jupiter.api.Test
+    void setChildrenLeftReal() {
+        And and = new And();
+        ConcreteOperand op = new ConcreteOperand(true);
+        and.setLeft(op);
+        assertEquals(op, and.getLeft());
+    }
+
+    @org.junit.jupiter.api.Test
+    void setChildrenLeftNull() {
+        And and = new And();
+        and.setLeft(null);
+        assertNull(and.getLeft());
+    }
+
+    @org.junit.jupiter.api.Test
+    void setChildrenRightReal() {
+        And and = new And();
+        ConcreteOperand op = new ConcreteOperand(true);
+        and.setRight(op);
+        assertEquals(op, and.getRight());
+    }
+
+    @org.junit.jupiter.api.Test
+    void setChildrenRightNull() {
+        And and = new And();
+        and.setRight(null);
+        assertNull(and.getRight());
+    }
+
+
 }
