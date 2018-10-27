@@ -3,7 +3,7 @@ package AudioEngine.LogicalOperators;
 /**
  * Created by WHOmagoo on 10/27/2018.
  */
-public abstract class Operator {
+public abstract class Operator implements Operand{
     int presedence;
 
     public Operator(int presedence){
@@ -14,5 +14,5 @@ public abstract class Operator {
         return presedence;
     }
 
-    public abstract boolean eval();
+    public abstract boolean evaluate();
 }
