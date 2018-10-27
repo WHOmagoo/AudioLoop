@@ -8,7 +8,7 @@ public class And extends BinaryOperator{
 
     @Override
     public boolean evaluate() {
-        return false;
+        return getLeft().evaluate() && getRight().evaluate();
     }
 
 }
