@@ -13,4 +13,6 @@ public abstract class Operator {
     public int getPresedence(){
         return presedence;
     }
+
+    public abstract boolean eval();
 }
