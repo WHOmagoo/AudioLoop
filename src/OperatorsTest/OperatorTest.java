@@ -25,13 +25,13 @@ class OperatorTest {
     @org.junit.jupiter.api.Test
     void ConcreteOperandEvaluateTrue() {
         ConcreteOperand op = new ConcreteOperand(true);
-        assertTrue(true);
+        assertTrue(op.evaluate());
     }
 
     @org.junit.jupiter.api.Test
     void ConcreteOperandEvaluateFalse() {
         ConcreteOperand op = new ConcreteOperand(false);
-        assertFalse(true);
+        assertFalse(op.evaluate());
     }
 
     @org.junit.jupiter.api.Test
