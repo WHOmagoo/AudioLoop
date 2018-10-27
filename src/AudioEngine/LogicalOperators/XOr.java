@@ -8,7 +8,7 @@ public class XOr extends BinaryOperator {
 
     @Override
     public boolean evaluate() {
-        return getLeft() != getRight();
+        return getLeft().evaluate() != getRight().evaluate();
     }
 
 }
