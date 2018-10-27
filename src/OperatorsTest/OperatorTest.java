@@ -1,7 +1,6 @@
 package OperatorsTest;
 
-import AudioEngine.LogicalOperators.And;
-import AudioEngine.LogicalOperators.Operand;
+import AudioEngine.LogicalOperators.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -85,5 +84,65 @@ class OperatorTest {
         assertNull(and.getRight());
     }
 
+
+    @org.junit.jupiter.api.Test
+    void trueXOrTrue(){
+        ConcreteOperand left = new ConcreteOperand(true);
+        ConcreteOperand right = new ConcreteOperand(true);
+
+        XOr xor = new XOr();
+        xor.setLeft(left);
+        xor.setRight(right);
+        assertFalse(xor.evaluate());
+    }
+
+    @org.junit.jupiter.api.Test
+    void trueXOrFalse(){
+        ConcreteOperand left = new ConcreteOperand(true);
+        ConcreteOperand right = new ConcreteOperand(false);
+
+        XOr xor = new XOr();
+        xor.setLeft(left);
+        xor.setRight(right);
+        assertTrue(xor.evaluate());
+    }
+
+    @org.junit.jupiter.api.Test
+    void falseXOrFalse(){
+        ConcreteOperand left = new ConcreteOperand(false);
+        ConcreteOperand right = new ConcreteOperand(false);
+
+        XOr xor = new XOr();
+        xor.setLeft(left);
+        xor.setRight(right);
+        assertFalse(xor.evaluate());
+    }
+
+    @org.junit.jupiter.api.Test
+    void falseXOrTrue(){
+        ConcreteOperand left = new ConcreteOperand(false);
+        ConcreteOperand right = new ConcreteOperand(true);
+
+        XOr xor = new XOr();
+        xor.setLeft(left);
+        xor.setRight(right);
+        assertTrue(xor.evaluate());
+    }
+
+    @org.junit.jupiter.api.Test
+    void negateTrue(){
+        ConcreteOperand child = new ConcreteOperand(true);
+        Not not = new Not();
+        not.setChild(child);
+        assertFalse(not.evaluate());
+    }
+
+    @org.junit.jupiter.api.Test
+    void negateFalse(){
+        ConcreteOperand child = new ConcreteOperand(false);
+        Not not = new Not();
+        not.setChild(child);
+        assertTrue(not.evaluate());
+    }
 
 }
