@@ -9,4 +9,12 @@ public abstract class UnaryOperator extends Operator{
     public UnaryOperator(int precedence) {
         super(precedence);
     }
+
+    public Operand getRight(){
+        return child;
+    }
+
+    public Operand getLeft(){
+        return null;
+    }
 }

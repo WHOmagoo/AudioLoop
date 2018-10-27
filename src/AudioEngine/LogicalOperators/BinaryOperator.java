@@ -10,4 +10,12 @@ public abstract class BinaryOperator extends Operator{
     public BinaryOperator(int precedence) {
         super(precedence);
     }
+
+    public Operand getLeft(){
+        return left;
+    }
+
+    public Operand getRight(){
+        return right;
+    }
 }
