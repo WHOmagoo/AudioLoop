@@ -16,7 +16,7 @@ class OperatorTest {
         }
 
         @Override
-        public boolean evaluate() {
+        public boolean evaluate(){
             return bool;
         }
     }
@@ -34,24 +34,27 @@ class OperatorTest {
     }
 
     @org.junit.jupiter.api.Test
-    void getPrecedence() {
-        And and = new And();
-        assertEquals(3, and.getPrecedence());
+    void getPrecedenceAnd() {
+        Operator op = new And();
+        assertEquals(3, op.getPrecedence());
     }
 
     @org.junit.jupiter.api.Test
-    void getLeft() {
-
+    void getPrecedenceOr() {
+        Operator op = new Or();
+        assertEquals(1, op.getPrecedence());
     }
 
     @org.junit.jupiter.api.Test
-    void getRight() {
-
+    void getPrecedenceXOr() {
+        Operator op = new XOr();
+        assertEquals(2, op.getPrecedence());
     }
 
     @org.junit.jupiter.api.Test
-    void evaluate() {
-
+    void getPrecedenceNot() {
+        Operator op = new Not();
+        assertEquals(Integer.MAX_VALUE, op.getPrecedence());
     }
 
     @org.junit.jupiter.api.Test
@@ -90,10 +93,10 @@ class OperatorTest {
         ConcreteOperand left = new ConcreteOperand(true);
         ConcreteOperand right = new ConcreteOperand(true);
 
-        XOr xor = new XOr();
-        xor.setLeft(left);
-        xor.setRight(right);
-        assertFalse(xor.evaluate());
+        BinaryOperator op = new XOr();
+        op.setLeft(left);
+        op.setRight(right);
+        assertFalse(op.evaluate());
     }
 
     @org.junit.jupiter.api.Test
@@ -101,10 +104,10 @@ class OperatorTest {
         ConcreteOperand left = new ConcreteOperand(true);
         ConcreteOperand right = new ConcreteOperand(false);
 
-        XOr xor = new XOr();
-        xor.setLeft(left);
-        xor.setRight(right);
-        assertTrue(xor.evaluate());
+        BinaryOperator op = new XOr();
+        op.setLeft(left);
+        op.setRight(right);
+        assertTrue(op.evaluate());
     }
 
     @org.junit.jupiter.api.Test
@@ -112,10 +115,10 @@ class OperatorTest {
         ConcreteOperand left = new ConcreteOperand(false);
         ConcreteOperand right = new ConcreteOperand(false);
 
-        XOr xor = new XOr();
-        xor.setLeft(left);
-        xor.setRight(right);
-        assertFalse(xor.evaluate());
+        BinaryOperator op = new XOr();
+        op.setLeft(left);
+        op.setRight(right);
+        assertFalse(op.evaluate());
     }
 
     @org.junit.jupiter.api.Test
@@ -123,26 +126,26 @@ class OperatorTest {
         ConcreteOperand left = new ConcreteOperand(false);
         ConcreteOperand right = new ConcreteOperand(true);
 
-        XOr xor = new XOr();
-        xor.setLeft(left);
-        xor.setRight(right);
-        assertTrue(xor.evaluate());
+        BinaryOperator op = new XOr();
+        op.setLeft(left);
+        op.setRight(right);
+        assertTrue(op.evaluate());
     }
 
     @org.junit.jupiter.api.Test
     void negateTrue(){
         ConcreteOperand child = new ConcreteOperand(true);
-        Not not = new Not();
-        not.setChild(child);
-        assertFalse(not.evaluate());
+        UnaryOperator op = new Not();
+        op.setChild(child);
+        assertFalse(op.evaluate());
     }
 
     @org.junit.jupiter.api.Test
     void negateFalse(){
         ConcreteOperand child = new ConcreteOperand(false);
-        Not not = new Not();
-        not.setChild(child);
-        assertTrue(not.evaluate());
+        UnaryOperator op = new Not();
+        op.setChild(child);
+        assertTrue(op.evaluate());
     }
 
 }
