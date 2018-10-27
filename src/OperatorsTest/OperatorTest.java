@@ -1,8 +1,6 @@
 package OperatorsTest;
 
-import AudioEngine.LogicalOperators.And;
-import AudioEngine.LogicalOperators.Operand;
-import AudioEngine.LogicalOperators.XOr;
+import AudioEngine.LogicalOperators.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -98,6 +96,22 @@ class OperatorTest {
         xor.setLeft(left);
         xor.setRight(right);
         assertTrue(xor.evaluate());
+    }
+
+    @org.junit.jupiter.api.Test
+    void negateTrue(){
+        ConcreteOperand child = new ConcreteOperand(true);
+        Not not = new Not();
+        not.setChild(child);
+        assertFalse(not.evaluate());
+    }
+
+    @org.junit.jupiter.api.Test
+    void negateFalse(){
+        ConcreteOperand child = new ConcreteOperand(false);
+        Not not = new Not();
+        not.setChild(child);
+        assertTrue(not.evaluate());
     }
 
 }
