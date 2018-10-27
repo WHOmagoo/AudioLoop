@@ -3,15 +3,16 @@ package AudioEngine.LogicalOperators;
 /**
  * Created by WHOmagoo on 10/27/2018.
  */
-public abstract class Operator implements Operand{
-    int presedence;
 
-    public Operator(int presedence){
-        this.presedence = presedence;
+public abstract class Operator implements Operand{
+    private int precedence;
+
+    public Operator(int precedence){
+        this.precedence = precedence;
     }
 
-    public int getPresedence(){
-        return presedence;
+    public int getPrecedence(){
+        return precedence;
     }
 
     public abstract boolean evaluate();
