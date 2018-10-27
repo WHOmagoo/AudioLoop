@@ -4,14 +4,14 @@ package AudioEngine.LogicalOperators;
  * Created by WHOmagoo on 10/27/2018.
  */
 public abstract class Operator {
-    int presedence;
+    private int precedence;
 
-    public Operator(int presedence){
-        this.presedence = presedence;
+    public Operator(int precedence){
+        this.precedence = precedence;
     }
 
-    public int getPresedence(){
-        return presedence;
+    public int getPrecedence(){
+        return precedence;
     }
 
     public abstract boolean eval();

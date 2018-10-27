@@ -2,8 +2,8 @@ package AudioEngine.LogicalOperators;
 
 public class Or extends BinaryOperator {
 
-    public Or(int presedence) {
-        super(presedence);
+    public Or(int precedence) {
+        super(precedence);
     }
 
     @Override

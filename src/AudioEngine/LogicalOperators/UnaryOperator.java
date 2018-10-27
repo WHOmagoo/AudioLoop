@@ -6,7 +6,7 @@ package AudioEngine.LogicalOperators;
 public abstract class UnaryOperator extends Operator{
 
 
-    public UnaryOperator(int presedence) {
-        super(presedence);
+    public UnaryOperator(int precedence) {
+        super(precedence);
     }
 }

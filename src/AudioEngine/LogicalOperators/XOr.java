@@ -2,8 +2,8 @@ package AudioEngine.LogicalOperators;
 
 public class XOr extends BinaryOperator {
 
-    public XOr(int presedence) {
-        super(presedence);
+    public XOr(int precedence) {
+        super(precedence);
     }
 
     @Override

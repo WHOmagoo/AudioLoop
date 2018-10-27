@@ -2,8 +2,8 @@ package AudioEngine.LogicalOperators;
 
 public class Not extends UnaryOperator{
 
-    public Not(int presedence) {
-        super(presedence);
+    public Not(int precedence) {
+        super(precedence);
     }
 
     @Override
