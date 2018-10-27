@@ -2,6 +2,7 @@ package OperatorsTest;
 
 import AudioEngine.LogicalOperators.And;
 import AudioEngine.LogicalOperators.Operand;
+import AudioEngine.LogicalOperators.XOr;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -53,6 +54,50 @@ class OperatorTest {
     @org.junit.jupiter.api.Test
     void evaluate() {
 
+    }
+
+    @org.junit.jupiter.api.Test
+    void trueXOrTrue(){
+        ConcreteOperand left = new ConcreteOperand(true);
+        ConcreteOperand right = new ConcreteOperand(true);
+
+        XOr xor = new XOr();
+        xor.setLeft(left);
+        xor.setRight(right);
+        assertFalse(xor.evaluate());
+    }
+
+    @org.junit.jupiter.api.Test
+    void trueXOrFalse(){
+        ConcreteOperand left = new ConcreteOperand(true);
+        ConcreteOperand right = new ConcreteOperand(false);
+
+        XOr xor = new XOr();
+        xor.setLeft(left);
+        xor.setRight(right);
+        assertTrue(xor.evaluate());
+    }
+
+    @org.junit.jupiter.api.Test
+    void falseXOrFalse(){
+        ConcreteOperand left = new ConcreteOperand(false);
+        ConcreteOperand right = new ConcreteOperand(false);
+
+        XOr xor = new XOr();
+        xor.setLeft(left);
+        xor.setRight(right);
+        assertFalse(xor.evaluate());
+    }
+
+    @org.junit.jupiter.api.Test
+    void falseXOrTrue(){
+        ConcreteOperand left = new ConcreteOperand(false);
+        ConcreteOperand right = new ConcreteOperand(true);
+
+        XOr xor = new XOr();
+        xor.setLeft(left);
+        xor.setRight(right);
+        assertTrue(xor.evaluate());
     }
 
 }
