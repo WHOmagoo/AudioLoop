@@ -7,8 +7,9 @@ public class Not extends UnaryOperator{
     }
 
     @Override
-    public boolean eval() {
+    public boolean evaluate() {
         return false;
     }
+
 
 }

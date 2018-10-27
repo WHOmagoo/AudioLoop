@@ -7,7 +7,7 @@ public class And extends BinaryOperator{
     }
 
     @Override
-    public boolean eval() {
+    public boolean evaluate() {
         return false;
     }
 
