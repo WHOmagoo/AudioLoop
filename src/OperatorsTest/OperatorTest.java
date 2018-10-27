@@ -87,6 +87,51 @@ class OperatorTest {
         assertNull(and.getRight());
     }
 
+    @org.junit.jupiter.api.Test
+    void trueAndTrue() {
+        And and = new And();
+        ConcreteOperand left = new ConcreteOperand(true);
+        ConcreteOperand right = new ConcreteOperand(true);
+
+        and.setLeft(left);
+        and.setRight(right);
+        assertTrue(and.evaluate());
+
+    }
+
+    @org.junit.jupiter.api.Test
+    void trueAndFalse() {
+        And and = new And();
+        ConcreteOperand left = new ConcreteOperand(true);
+        ConcreteOperand right = new ConcreteOperand(false);
+
+        and.setLeft(left);
+        and.setRight(right);
+        assertFalse(and.evaluate());
+    }
+
+    @org.junit.jupiter.api.Test
+    void falseAndTrue() {
+        And and = new And();
+        ConcreteOperand left = new ConcreteOperand(false);
+        ConcreteOperand right = new ConcreteOperand(true);
+
+        and.setLeft(left);
+        and.setRight(right);
+        assertFalse(and.evaluate());
+    }
+
+    @org.junit.jupiter.api.Test
+    void falseAndFalse() {
+        And and = new And();
+        ConcreteOperand left = new ConcreteOperand(false);
+        ConcreteOperand right = new ConcreteOperand(false);
+
+        and.setLeft(left);
+        and.setRight(right);
+        assertFalse(and.evaluate());
+    }
+
 
     @org.junit.jupiter.api.Test
     void trueXOrTrue(){
