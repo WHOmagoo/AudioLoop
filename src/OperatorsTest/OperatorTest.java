@@ -23,6 +23,18 @@ class OperatorTest {
     }
 
     @org.junit.jupiter.api.Test
+    void ConcreteOperandEvaluateTrue() {
+        ConcreteOperand op = new ConcreteOperand(true);
+        assertTrue(true);
+    }
+
+    @org.junit.jupiter.api.Test
+    void ConcreteOperandEvaluateFalse() {
+        ConcreteOperand op = new ConcreteOperand(false);
+        assertFalse(true);
+    }
+
+    @org.junit.jupiter.api.Test
     void getPrecedence() {
         And and = new And();
         assertEquals(3, and.getPrecedence());
