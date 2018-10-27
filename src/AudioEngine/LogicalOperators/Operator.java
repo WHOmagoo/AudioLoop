@@ -9,4 +9,8 @@ public abstract class Operator {
     public Operator(int presedence){
         this.presedence = presedence;
     }
+
+    public int getPresedence(){
+        return presedence;
+    }
 }
