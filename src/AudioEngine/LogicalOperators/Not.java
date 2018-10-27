@@ -8,7 +8,7 @@ public class Not extends UnaryOperator{
 
     @Override
     public boolean evaluate() {
-        return false;
+        return !getRight().evaluate();
     }
 
 
