@@ -18,4 +18,12 @@ public abstract class BinaryOperator extends Operator{
     public Operand getRight(){
         return right;
     }
+
+    public void setRight(Operand right){
+        this.right = right;
+    }
+
+    public void setLeft(Operand left){
+        this.left = left;
+    }
 }

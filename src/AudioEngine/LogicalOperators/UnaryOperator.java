@@ -17,4 +17,8 @@ public abstract class UnaryOperator extends Operator{
     public Operand getLeft(){
         return null;
     }
+
+    public void setChild(Operand child){
+        this.child = child;
+    }
 }
