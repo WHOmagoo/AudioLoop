@@ -1,5 +1,7 @@
 package AudioEngine.Groupings;
 
+import AudioEngine.LogicalOperators.Operand;
+
 import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -8,35 +10,43 @@ import java.util.Set;
 /**
  * Created by Hugh on 10/29/2018.
  */
-public class MusicGrouping {
-    Set<Boolean> items = new HashSet<Boolean>();
+public class MusicGrouping implements Operand {
+    Set<MusicClip> items = new HashSet<MusicClip>();
 
-    public MusicGrouping(Boolean ... items){
-        this.items = new HashSet<Boolean>();
-        for (Boolean item : items) {
-            add(item);
-        }
+    public MusicGrouping(MusicClip ... items){
+        this.items = new HashSet<MusicClip>();
+        addAll(items);
     }
 
-    public void add(Boolean item){
+    public void add(MusicClip item){
         if(!items.contains(item)){
             items.add(item);
         }
     }
 
-    public void remove(Boolean item){
+    public void addAll(MusicClip ... items){
+        for(MusicClip item : items){
+            add(item);
+        }
+    }
+
+    public void remove(MusicClip item){
         items.remove(item);
     }
 
-    public void setChosen(boolean chosen){
-        for (Boolean item: items) {
+    public boolean contains(MusicClip item){
+        return items.contains(item);
+    }
+
+    public void setChosen(MusicClip chosen){
+        for (MusicClip item: items) {
             item = chosen;
         }
     }
 
     public boolean evaluate(){
-        for (Boolean item: items){
-            if(!item){
+        for (MusicClip item: items){
+            if(!item.evaluate()){
                 return false;
             }
         }

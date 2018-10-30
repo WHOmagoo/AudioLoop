@@ -8,7 +8,7 @@ public abstract class Operator implements Operand
 {
     int precedence;
 
-    public Operator(int precedence){
+     public Operator(int precedence){
         this.precedence = precedence;
     }
     public int getPrecedence(){

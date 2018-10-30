@@ -10,10 +10,10 @@ import java.io.InputStream;
 /**
  * Created by Hugh on 10/29/2018.
  */
-public class MusicFile {
+public class MusicClipPlayer {
     Clip clip;
 
-    public MusicFile(AudioInputStream input) throws LineUnavailableException, IOException {
+    MusicClipPlayer(AudioInputStream input) throws LineUnavailableException, IOException {
         clip = AudioSystem.getClip();
         clip.open(input);
     }
@@ -26,5 +26,5 @@ public class MusicFile {
         clip.stop();
     }
 
-    
+
 }
