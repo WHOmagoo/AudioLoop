@@ -6,7 +6,6 @@ public class XOr extends BinaryOperator {
         super(2);
     }
 
-    @Override
     public boolean evaluate() {
         return getLeft().evaluate() != getRight().evaluate();
     }

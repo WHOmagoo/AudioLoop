@@ -6,7 +6,6 @@ public class Or extends BinaryOperator {
         super(1);
     }
 
-    @Override
     public boolean evaluate() {
         return getLeft().evaluate() || getRight().evaluate();
     }

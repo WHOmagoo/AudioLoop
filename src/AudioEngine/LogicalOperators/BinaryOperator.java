@@ -4,14 +4,18 @@ package AudioEngine.LogicalOperators;
  * Created by WHOmagoo on 10/27/2018.
  */
 public abstract class BinaryOperator extends Operator{
-    Operand left;
-    Operand right;
+    private Operand left;
+    private Operand right;
 
-    public BinaryOperator(int precedence) {
+    public BinaryOperator(int precedence){
         super(precedence);
     }
 
-    public Operand getLeft(){
+    public int getPrecedence(){
+        return precedence;
+    }
+
+    public  Operand getLeft(){
         return left;
     }
 

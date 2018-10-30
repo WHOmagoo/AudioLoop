@@ -12,11 +12,10 @@ class OperatorTest {
     private class ConcreteOperand implements Operand{
         boolean bool;
 
-        public ConcreteOperand(boolean bool){
+        ConcreteOperand(boolean bool){
             this.bool = bool;
         }
 
-        @Override
         public boolean evaluate(){
             return bool;
         }

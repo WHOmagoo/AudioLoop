@@ -6,19 +6,15 @@ package AudioEngine.LogicalOperators;
 public abstract class UnaryOperator extends Operator{
     Operand child;
 
-    public UnaryOperator(int precedence) {
+    public UnaryOperator(int precedence){
         super(precedence);
     }
 
-    public Operand getRight(){
+    public void setChild(Operand newChild){
+        this.child = newChild;
+    }
+
+    public Operand getChild(){
         return child;
-    }
-
-    public Operand getLeft(){
-        return null;
-    }
-
-    public void setChild(Operand child){
-        this.child = child;
     }
 }

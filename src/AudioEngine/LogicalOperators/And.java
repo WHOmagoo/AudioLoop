@@ -6,7 +6,6 @@ public class And extends BinaryOperator{
         super(3);
     }
 
-    @Override
     public boolean evaluate() {
         return getLeft().evaluate() && getRight().evaluate();
     }
