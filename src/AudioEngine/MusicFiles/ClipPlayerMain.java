@@ -10,8 +10,26 @@ public class ClipPlayerMain {
 
     public static void main(String[] args) {
 
+        class AudioListener implements LineListener {
+
+            private boolean done = false;
+
+            @Override
+            public synchronized void update(LineEvent event) {
+                LineEvent.Type eventType = event.getType();
+                if (eventType == LineEvent.Type.STOP || eventType == LineEvent.Type.CLOSE) {
+                    done = true;
+                    notifyAll();
+                }
+            }
+            private synchronized void waitUntilDone() throws InterruptedException {
+                while (!done) { wait(); }
+            }
+        }
+
         try {
-            File yourFile = new File("70s Funk Clav_1.wav");
+            File yourFile = new File("Classic Electric Piano_1.wav");
+            File fileTwo = new File("JAZZ ORGAN_1.wav");
             AudioInputStream stream;
             AudioFormat format;
             DataLine.Info info;
@@ -21,14 +39,19 @@ public class ClipPlayerMain {
             format = stream.getFormat();
             info = new DataLine.Info(Clip.class, format);
             clip = (Clip) AudioSystem.getLine(info);
+            AudioListener listener = new AudioListener();
+            clip.addLineListener(listener);
             clip.open(stream);
-            clip.start();
-            while (!clip.isRunning())
-                Thread.sleep(10);
-            while (clip.isRunning())
-                Thread.sleep(10);
-            clip.close();
-        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException | InterruptedException e) {
+            try {
+                clip.start();
+                listener.waitUntilDone();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                clip.close();
+            }
+
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         }
 
