@@ -19,10 +19,8 @@ public class MusicGrouping implements Operand {
 
     public void add(MusicClip item){
         //TODO Throw an error or silently not add a null
-        if(item != null) {
-            if (!items.contains(item)) {
-                items.add(item);
-            }
+        if (item != null && !items.contains(item)) {
+            items.add(item);
         }
     }
 
