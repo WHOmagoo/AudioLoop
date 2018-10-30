@@ -1,6 +1,6 @@
-package AudioEngine.Groupings;
+package audio.groupings;
 
-import AudioEngine.LogicalOperators.Operand;
+import audio.operators.Operand;
 
 /**
  * Created by Hugh on 10/29/2018.

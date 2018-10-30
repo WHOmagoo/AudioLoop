@@ -1,6 +1,6 @@
 package test;
 
-import AudioEngine.Groupings.*;
+import audio.groupings.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
