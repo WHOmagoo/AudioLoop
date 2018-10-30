@@ -21,6 +21,13 @@ class GroupingsTest {
     }
 
     @Test
+    void musicClipSetChosenFalse() {
+        MusicClip clip = new MusicClip();
+        clip.setChosen(false);
+        assertFalse(clip.evaluate());
+    }
+
+    @Test
     void musicGroupingAddAll() {
         MusicClip dingo = new MusicClip();
         MusicClip dingus = new MusicClip();
@@ -66,5 +73,24 @@ class GroupingsTest {
         MusicClip ding = new MusicClip();
         group.add(null);
         assertEquals(2, group.getSize());
+    }
+
+    @Test
+    void musicGroupingContainsTrue() {
+        MusicClip dingo = new MusicClip();
+        MusicClip dingus = new MusicClip();
+        MusicGrouping group = new MusicGrouping(dingo, dingus);
+        MusicClip ding = new MusicClip();
+        group.add(ding);
+        assertTrue(group.contains(ding));
+    }
+
+    @Test
+    void musicGroupingContainsFalse() {
+        MusicClip dingo = new MusicClip();
+        MusicClip dingus = new MusicClip();
+        MusicGrouping group = new MusicGrouping(dingo, dingus);
+        MusicClip ding = new MusicClip();
+        assertFalse(group.contains(ding));
     }
 }
