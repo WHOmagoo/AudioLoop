@@ -1,14 +1,11 @@
-import AudioEngine.MusicFiles.MusicClipFactory;
-import AudioEngine.MusicFiles.MusicClipPlayer;
+import audio.engine.MusicClipFactory;
+import audio.engine.MusicClipPlayer;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Scanner;
 
 /**

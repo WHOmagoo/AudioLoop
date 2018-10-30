@@ -1,8 +1,7 @@
-package AudioEngine.Groupings;
+package audio.groupings;
 
-import AudioEngine.LogicalOperators.Operand;
+import audio.operators.Operand;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 

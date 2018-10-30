@@ -1,11 +1,10 @@
-package AudioEngine.MusicFiles;
+package audio.engine;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Created by Hugh on 10/29/2018.

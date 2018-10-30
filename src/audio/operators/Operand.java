@@ -1,4 +1,4 @@
-package AudioEngine.LogicalOperators;
+package audio.operators;
 
 /**
  * Created by WHOmagoo on 10/27/2018.

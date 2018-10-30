@@ -1,4 +1,4 @@
-package AudioEngine.LogicalOperators;
+package audio.operators;
 
 public class Not extends UnaryOperator{
 

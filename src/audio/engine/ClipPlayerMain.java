@@ -1,9 +1,8 @@
-package AudioEngine.MusicFiles;
+package audio.engine;
 
 import javax.sound.sampled.*;
-import javax.sound.sampled.spi.AudioFileReader;
+
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class ClipPlayerMain {
