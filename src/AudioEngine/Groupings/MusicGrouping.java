@@ -2,7 +2,6 @@ package AudioEngine.Groupings;
 
 import AudioEngine.LogicalOperators.Operand;
 
-import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,8 +18,11 @@ public class MusicGrouping implements Operand {
     }
 
     public void add(MusicClip item){
-        if(!items.contains(item)){
-            items.add(item);
+        //TODO Throw an error or silently not add a null
+        if(item != null) {
+            if (!items.contains(item)) {
+                items.add(item);
+            }
         }
     }
 
@@ -28,6 +30,10 @@ public class MusicGrouping implements Operand {
         for(MusicClip item : items){
             add(item);
         }
+    }
+
+    public int getSize() {
+        return items.size();
     }
 
     public void remove(MusicClip item){

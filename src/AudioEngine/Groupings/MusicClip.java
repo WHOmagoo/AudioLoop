@@ -8,7 +8,7 @@ import AudioEngine.LogicalOperators.Operand;
 public class MusicClip implements Operand{
     boolean isChosen;
 
-    public MusicClip(){
+    public MusicClip() {
         isChosen = false;
     }
 

@@ -1,4 +1,4 @@
-package OperatorsTest;
+package test;
 
 import AudioEngine.LogicalOperators.*;
 import org.junit.jupiter.api.Test;
