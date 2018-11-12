@@ -5,7 +5,7 @@ import audio.operators.Operand;
 /**
  * Created by Hugh on 10/29/2018.
  */
-public class MusicClip implements Operand{
+public class MusicClip extends Music {
     boolean isChosen;
 
     public MusicClip() {
