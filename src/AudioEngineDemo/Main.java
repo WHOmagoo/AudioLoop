@@ -1,9 +1,9 @@
 package AudioEngineDemo;
 
-import AudioEngine.Groupings.MusicClip;
-import AudioEngine.Groupings.MusicGrouping;
-import AudioEngine.MusicFiles.MusicClipFactory;
-import AudioEngine.MusicFiles.MusicClipPlayer;
+import audio.engine.MusicClipFactory;
+import audio.engine.MusicClipPlayer;
+import audio.groupings.MusicClip;
+import audio.groupings.MusicGrouping;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
