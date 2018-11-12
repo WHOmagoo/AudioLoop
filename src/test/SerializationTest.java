@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SerializationTest {
 
     @org.junit.jupiter.api.Test
-    void serializeMusicGroupingEmpty() {
+    void serializeMusicGroupingEmpty() throws FileNotFoundException {
         MusicGrouping grouping = new MusicGrouping();
         String dingo = Serialize.serializeGroupings(grouping);
         System.out.println(dingo);
