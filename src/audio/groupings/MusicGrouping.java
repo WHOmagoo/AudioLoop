@@ -62,14 +62,14 @@ public class MusicGrouping extends Music implements Operand, Serializable {
     }
 
     private void writeObject(ObjectOutputStream out) throws IOException {
-        out.writeChars("<MusicGrouping>");
+        out.writeChars("<MusicGrouping>\n");
 
         for (MusicClip musicClip : items) {
             out.writeObject(musicClip);
 
         }
 
-        out.writeChars("</MusicGrouping>");
+        out.writeChars("</MusicGrouping>\n");
     }
 
 
