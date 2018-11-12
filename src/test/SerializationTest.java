@@ -28,7 +28,7 @@ class SerializationTest {
         MusicClip adele = new MusicClip();
         MusicGrouping grouping = new MusicGrouping(hello, by, adele);
         String dingo = Serialize.serializeGroupings(grouping);
-        PrintWriter street = new PrintWriter(new File("/Users/mphannon/Documents/hello.xml"));
+        PrintWriter street = new PrintWriter(new File("working_directory" + File.pathSeparator + "saved_files" + File.pathSeparator + "hello.xml"));
         street.print(dingo);
         street.close();
     }
