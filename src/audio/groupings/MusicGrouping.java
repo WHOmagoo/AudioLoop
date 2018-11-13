@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * Created by Hugh on 10/29/2018.
  */
-public class MusicGrouping extends Music implements Operand, Serializable {
+public class MusicGrouping extends Music implements Operand {
     Set<MusicClip> items = new HashSet<MusicClip>();
 
     public MusicGrouping(MusicClip ... items){
@@ -60,17 +60,4 @@ public class MusicGrouping extends Music implements Operand, Serializable {
 
         return true;
     }
-
-    private void writeObject(ObjectOutputStream out) throws IOException {
-        out.writeChars("<MusicGrouping>\n");
-
-        for (MusicClip musicClip : items) {
-            out.writeObject(musicClip);
-
-        }
-
-        out.writeChars("</MusicGrouping>\n");
-    }
-
-
 }
