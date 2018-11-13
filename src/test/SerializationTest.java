@@ -13,12 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SerializationTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void serializeMusicGroupingEmpty() throws FileNotFoundException {
         MusicGrouping grouping = new MusicGrouping();
         String dingo = Serialize.serializeGroupings(grouping);
         System.out.println(dingo);
-        assertEquals("<?xml version=\"1.0\" ?><audio.groupings.MusicGrouping><items></items></audio.groupings.MusicGrouping>", dingo);
+        assertEquals("<?xml version=\"1.0\" ?><musicGrouping><items></items></musicGrouping>", dingo);
     }
 
     @Test
@@ -28,8 +28,7 @@ class SerializationTest {
         MusicClip adele = new MusicClip();
         MusicGrouping grouping = new MusicGrouping(hello, by, adele);
         String dingo = Serialize.serializeGroupings(grouping);
-        PrintWriter street = new PrintWriter(new File("/Users/mphannon/Documents/hello.xml"));
-        street.print(dingo);
-        street.close();
+        assertNotNull(dingo);
     }
+
 }
