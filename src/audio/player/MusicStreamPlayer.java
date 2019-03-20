@@ -1,7 +1,5 @@
 package audio.player;
 
-import sun.audio.ContinuousAudioDataStream;
-
 import javax.sound.sampled.*;
 import java.io.*;
 
@@ -18,13 +16,30 @@ public class MusicStreamPlayer implements IMusicClipPlayer{
             LineEvent.Type type = event.getType();
             if(LineEvent.Type.CLOSE.equals(type) || LineEvent.Type.STOP.equals(type)){
                 isPlaying = false;
+                clip.setFramePosition(0);
+                clip.start();
+            }else if(LineEvent.Type.START.equals(type)){
+                System.out.println("Started");
+                System.out.println(event);
+            } else {
+
+                System.out.println("An event happened " + event + "." + event.getFramePosition());
             }
         });
 
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
-        System.out.println(clip.getFrameLength());
+//        clip.loop(Clip.LOOP_CONTINUOUSLY);
+//        System.out.println(clip.getFrameLength());
         clip.setLoopPoints(0, 721287);
-        clip.loop(3);
+//        clip.loop(3);
+        setVolume(-10f);
+
+
+
+    }
+
+    public void setVolume(float f){
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(f);
     }
 
     public void AddLineListener(LineListener listener){
