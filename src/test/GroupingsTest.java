@@ -1,6 +1,7 @@
 package test;
 
-import audio.groupings.*;
+import audio.groupings.MusicClip;
+import audio.groupings.MusicGrouping;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
