@@ -1,22 +1,25 @@
 package audio.groupings;
 
-import java.util.Collection;
-import java.util.TreeSet;
+import audio.operators.Operand;
+import audio.operators.Operator;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CueOptions {
-    TreeSet<Music> options;
+    HashMap<Music, Operand> options;
 
-    public CueOptions(Collection<Music> collection){
+    public CueOptions(Map<Music, Operand> collection){
         this();
-        options.addAll(collection);
+        options.putAll(collection);
     }
 
     public CueOptions(){
-        options = new TreeSet<Music>();
+        options = new HashMap<Music, Operand>();
     }
 
-    public void add(Music option){
-        options.add(option);
+    public void add(Music option, Operator condition){
+        options.put(option, condition);
     }
 
     public void remove(Music option){
@@ -25,5 +28,9 @@ public class CueOptions {
 
     public int optionsCount(){
         return options.size();
+    }
+
+    public HashMap<Music, Operand> getOptions(){
+        return options;
     }
 }

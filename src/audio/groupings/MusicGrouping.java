@@ -2,10 +2,6 @@ package audio.groupings;
 
 import audio.operators.Operand;
 
-import java.io.IOException;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +11,13 @@ import java.util.Set;
 public class MusicGrouping extends Music implements Operand {
     Set<MusicClip> items = new HashSet<MusicClip>();
 
+
     public MusicGrouping(MusicClip ... items){
+        this("NotSpecified", items);
+    }
+
+    public MusicGrouping(String name, MusicClip ... items){
+        super(name);
         this.items = new HashSet<MusicClip>();
         addAll(items);
     }

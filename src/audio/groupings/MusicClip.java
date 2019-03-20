@@ -1,15 +1,18 @@
 package audio.groupings;
 
-import audio.operators.Operand;
-
 /**
  * Created by Hugh on 10/29/2018.
  */
 public class MusicClip extends Music {
     boolean isChosen;
 
-    public MusicClip() {
+    public MusicClip(String name) {
+        super(name);
         isChosen = false;
+    }
+
+    public MusicClip() {
+        this("NotSpecified");
     }
 
     public void setChosen(boolean isChosen){
