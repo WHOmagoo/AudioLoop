@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+
+
+<fx:root fx:controller="gui.MusicViewController"
+          xmlns:fx="http://audioloop.com/xml/music_view" alignment="center"
+          styleClass="root" type="gui.CustomClass">
+    <Label id="text" text="Custom Class" />
+</fx:root>
+
