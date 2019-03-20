@@ -21,4 +21,8 @@ public abstract class Music implements Operand {
     public String getName(){
         return name;
     }
+
+    public boolean evaluate(){
+        return isPlaying();
+    }
 }
