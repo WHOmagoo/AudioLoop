@@ -1,4 +1,4 @@
-package audio;
+package demo;
 
 import audio.editor.AudioInputStreamEditor;
 import audio.player.MusicStreamPlayer;
@@ -64,9 +64,11 @@ public class MusicPlayerDemo {
         MusicStreamPlayer player2 = new MusicStreamPlayer(stream1);
         MusicStreamPlayer player3 = new MusicStreamPlayer(stream2);
 
+        Thread.sleep(100);
+
         player.play();
-        player11.play();
-        player12.play();
+//        player11.play();
+//        player12.play();
         player2.play();
         player3.play();
 

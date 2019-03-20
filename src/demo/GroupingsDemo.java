@@ -1,3 +1,5 @@
+package demo;
+
 import audio.engine.MusicClipFactory;
 import audio.engine.MusicClipPlayer;
 
@@ -11,7 +13,9 @@ import java.util.Scanner;
 /**
  * Created by Hugh on 10/29/2018.
  */
-public class Main {
+
+@Deprecated
+public class GroupingsDemo {
     private static Scanner reader;
     private static HashMap<String, MusicClipPlayer> clips = new HashMap<String, MusicClipPlayer>();
 

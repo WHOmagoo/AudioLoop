@@ -1,4 +1,4 @@
-package AudioEngineDemo;
+package demo;
 
 import audio.engine.MusicClipFactory;
 import audio.engine.MusicClipPlayer;
@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 /**
  * Created by Hugh on 10/29/2018.
  */
-public class Main {
+public class AudioEngineDemo {
     private static Scanner reader;
     private static HashMap<String, MusicClipPlayer> musicPlayer = new HashMap<String, MusicClipPlayer>();
     private static HashMap<String, MusicClip> musicClip = new HashMap<String, MusicClip>();
@@ -106,10 +106,10 @@ public class Main {
     }
 
     private static void initializeFunctionMap(){
-        commands.put("load file", Main::loadFile);
-        commands.put("quit", Main::quit);
-        commands.put("group", Main::group);
-        commands.put("list", Main::list);
+        commands.put("load file", AudioEngineDemo::loadFile);
+        commands.put("quit", AudioEngineDemo::quit);
+        commands.put("group", AudioEngineDemo::group);
+        commands.put("list", AudioEngineDemo::list);
     }
 
     private static void list() {

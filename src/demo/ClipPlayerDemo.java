@@ -1,10 +1,10 @@
-package audio.engine;
+package demo;
 
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 
-public class ClipPlayerMain {
+public class ClipPlayerDemo {
 
     public static void main(String[] args) {
 
