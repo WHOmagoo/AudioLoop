@@ -34,6 +34,8 @@ public interface IMusicClipPlayer {
      */
     boolean isPlaying();
 
+    void requestNotificationOnFinish(Notifiable obj);
+
 //    void start();
 //    void pauseNow();
 //    void pauseAtRepeat();

@@ -1,6 +1,7 @@
 package demo;
 
 import audio.editor.AudioInputStreamEditor;
+import audio.player.ManyClipsPlayer;
 import audio.player.MusicStreamPlayer;
 
 import javax.sound.sampled.*;
@@ -50,27 +51,28 @@ public class MusicPlayerDemo {
         ByteArrayOutputStream fileBuffer = new ByteArrayOutputStream(fileBuf.length);
 
         AudioInputStream stream = AudioSystem.getAudioInputStream(new File("Jazz ORGAN_1.wav"));
-        AudioInputStream stream11 = AudioSystem.getAudioInputStream(new File("Jazz ORGAN_1.wav"));
-        AudioInputStream stream12 = AudioSystem.getAudioInputStream(new File("Jazz ORGAN_1.wav"));
+        AudioInputStream stream11 = AudioSystem.getAudioInputStream(new File("70s Funk Clav_1.wav"));
         AudioInputStream stream1 = AudioSystem.getAudioInputStream(new File("SoCal_1.wav"));
         AudioInputStream stream2 = AudioSystem.getAudioInputStream(new File("Classic Electric Piano_1.wav"));
 
 //        MusicStreamPlayer music = new MusicStreamPlayer(stream);
 
 //        AudioInputStreamEditor editor = new AudioInputStreamEditor(stream, 4);
-        MusicStreamPlayer player = new MusicStreamPlayer(stream);
-        MusicStreamPlayer player11 = new MusicStreamPlayer(stream11);
-        MusicStreamPlayer player12 = new MusicStreamPlayer(stream12);
-        MusicStreamPlayer player2 = new MusicStreamPlayer(stream1);
-        MusicStreamPlayer player3 = new MusicStreamPlayer(stream2);
+        MusicStreamPlayer jazzOrgan = new MusicStreamPlayer(stream);
+        MusicStreamPlayer funk70s = new MusicStreamPlayer(stream11);
+        MusicStreamPlayer soCal = new MusicStreamPlayer(stream1);
+        MusicStreamPlayer electricPiano = new MusicStreamPlayer(stream2);
 
-        Thread.sleep(100);
+//        Thread.sleep(100);
+
+        ManyClipsPlayer player = new ManyClipsPlayer();
+
+        player.add(jazzOrgan);
+        player.add(funk70s);
+        player.add(soCal);
+        player.add(electricPiano);
 
         player.play();
-//        player11.play();
-//        player12.play();
-        player2.play();
-        player3.play();
 
         System.in.read();
     }
