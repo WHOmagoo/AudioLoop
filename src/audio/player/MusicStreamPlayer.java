@@ -92,7 +92,7 @@ public class MusicStreamPlayer implements IMusicClipPlayer{
     public void play() {
         isPlaying = true;
 //        clip.start();
-        clip.loop(4);
+        clip.loop(2);
     }
 
     @Override

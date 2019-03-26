@@ -34,6 +34,11 @@ public class ManyClipsPlayer implements Notifiable {
     public synchronized void notifyObject(Object sender) {
         waitCount--;
         if(waitCount <= 0){
+//            try {
+//                Thread.sleep(0);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
             play();
         }
     }

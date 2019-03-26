@@ -2,6 +2,7 @@ package demo;
 
 import audio.editor.AudioInputStreamEditor;
 import audio.player.ManyClipsPlayer;
+import audio.player.Metronome;
 import audio.player.MusicStreamPlayer;
 
 import javax.sound.sampled.*;
@@ -65,15 +66,33 @@ public class MusicPlayerDemo {
 
 //        Thread.sleep(100);
 
+
+        var a = makePlayer("clip1Loop.wav");
+        var b = makePlayer("clip2Loop.wav");
+
         ManyClipsPlayer player = new ManyClipsPlayer();
 
-        player.add(jazzOrgan);
-        player.add(funk70s);
-        player.add(soCal);
-        player.add(electricPiano);
+        player.add(a);
+        player.add(b);
 
-        player.play();
 
-        System.in.read();
+        Metronome met = new Metronome();
+
+//        player.add(jazzOrgan);
+//        player.add(funk70s);
+//        player.add(soCal);
+//        player.add(electricPiano);
+
+//        player.play();
+//
+//        System.in.read();
+    }
+
+    public static MusicStreamPlayer makePlayer(String fileLocation) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        AudioInputStream stream = AudioSystem.getAudioInputStream(new File(fileLocation));
+
+        MusicStreamPlayer player = new MusicStreamPlayer(stream);
+
+        return player;
     }
 }
