@@ -18,7 +18,7 @@ public class Metronome implements IMusicClipPlayer{
 
         Mixer mixer = null;
 
-        AudioInputStream stream = AudioSystem.getAudioInputStream(new File("clip1Loop.wav"));
+        AudioInputStream stream = AudioSystem.getAudioInputStream(new File("Test Run.wav"));
 
         clip = AudioSystem.getClip();
         clip.open(stream);
@@ -87,7 +87,7 @@ public class Metronome implements IMusicClipPlayer{
 
         int totalToRead = 999999999;
 
-        FileInputStream loop1 = new FileInputStream(new File("clip1Loop.wav"));
+        FileInputStream loop1 = new FileInputStream(new File("Test Run.wav"));
         FileInputStream loop2 = new FileInputStream(new File("clip2Loop.wav"));
 
         //consume the header
@@ -140,11 +140,11 @@ public class Metronome implements IMusicClipPlayer{
 //            byte resultLow = reverse(bLittle);
 //            byte resultHigh = reverse(newBBig);
 
-            char low1 =  toChar(reverse(b1[i]));
-            char high1 = toChar(reverse(b1[i+1]));
+            char low1 =  toChar(b1[i]);
+            char high1 = toChar(b1[i+1]);
 
-            char low2 = toChar(reverse(b2[i]));
-            char high2 = toChar(reverse(b2[i+1]));
+            char low2 = toChar(b2[i]);
+            char high2 = toChar(b2[i+1]);
 
 //            low = reverse(low);
 //            high = reverse(high);
@@ -154,16 +154,16 @@ public class Metronome implements IMusicClipPlayer{
             int combined2 = (low2 << 16) | (high2 << 24);
 //            int combined2 = 0;
 
-            int combined = (combined1 + combined2) - combined2;
+            int combined = (combined1 / 2 + combined2 * 2);
 
 //            if(combined - combined2 != combined1){
 //                System.out.println("Overflow");
 //            }
 
             int shifted = combined >> 16;
-            b[i] = reverse((byte) shifted);
+            b[i] = (byte) shifted;
             shifted >>= 8;
-            b[i+1] = reverse((byte) shifted);
+            b[i+1] = (byte) shifted;
 
 //            if(b[i] != b1[i] || b[i+1] != b1[i+1]){
 //                System.out.println("Error converting number");
