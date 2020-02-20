@@ -38,6 +38,8 @@ public class Metronome implements IMusicClipPlayer{
         System.out.println("How long it should take " + clip.getMicrosecondLength() / 1000000.0);
         audioFormat = clip.getFormat();
 
+        SourceDataLine line = null;
+
         for (var tmp :
                 infos) {
             System.out.println("Mixer infos: " + tmp);
@@ -66,10 +68,10 @@ public class Metronome implements IMusicClipPlayer{
 //                Line tDL2 = m.getLine(info2);
 
                 Clip c = AudioSystem.getClip(m.getMixerInfo());
-                SourceDataLine sDL = AudioSystem.getSourceDataLine(audioFormat, m.getMixerInfo());
+                line = AudioSystem.getSourceDataLine(audioFormat, m.getMixerInfo());
 
                 System.out.println("\tMax lines: " + m.getMaxLines(Port.Info.LINE_IN));
-                System.out.println("\tSynchronization: " + m.isSynchronizationSupported(new Line[]{c, sDL}, false));
+                System.out.println("\tSynchronization: " + m.isSynchronizationSupported(new Line[]{c, line}, false));
                 mixer = m;
                 break;
             }
@@ -83,7 +85,7 @@ public class Metronome implements IMusicClipPlayer{
 //        System.out.println(m.getMaxLines(lineInfos[0]));
         System.out.println();
 
-        SourceDataLine line = (SourceDataLine) mixer.getLine(mixer.getSourceLineInfo()[0]);
+//        SourceDataLine line = (SourceDataLine) mixer.getLine(mixer.getSourceLineInfo()[0]);
 
         int totalToRead = 999999999;
 
@@ -154,16 +156,20 @@ public class Metronome implements IMusicClipPlayer{
             int combined2 = (low2 << 16) | (high2 << 24);
 //            int combined2 = 0;
 
-            int combined = (combined1 / 2 + combined2 * 2);
+            //Multiplication and Division
+            int combined = combined1 / 2 + combined2 * 2;
 
 //            if(combined - combined2 != combined1){
 //                System.out.println("Overflow");
 //            }
 
             int shifted = combined >> 16;
+//            b[i] = b2[i];
             b[i] = (byte) shifted;
             shifted >>= 8;
             b[i+1] = (byte) shifted;
+//            b[i+1] = b2[i+1];
+
 
 //            if(b[i] != b1[i] || b[i+1] != b1[i+1]){
 //                System.out.println("Error converting number");
@@ -214,11 +220,16 @@ public class Metronome implements IMusicClipPlayer{
 
         line.start();
 
-        int total = starting;
+        int total;
+
+        System.out.println("Clip format " + audioFormat);
+        System.out.println("Stream format " + line.getFormat());
 
         for (int i = 0; i < 5; i++) {
 
             long startTIme = System.currentTimeMillis();
+
+            total = 44;
 
             while (total + numBytesToRead < b.length) {
                 line.write(b, total, numBytesToRead);
