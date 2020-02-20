@@ -182,45 +182,31 @@ public class Metronome implements IMusicClipPlayer{
 //            byte resultLow = reverse(bLittle);
 //            byte resultHigh = reverse(newBBig);
 
-            char channel1msb =  toChar(b1[i]);
-            char channel1lsb = toChar(b1[i+1]);
+            char low1 =  toChar(reverse(b1[i]));
+            char high1 = toChar(reverse(b1[i+1]));
 
-            char channel2msb = toChar(b1[i+2]);
-            char channel2lsb = toChar(b1[i+3]);
-            /*Worked on wav*/
-//            char low2 = toChar(reverse(b2[i]));
-//            char high2 = toChar(reverse(b2[i+1]));
+            char low2 = toChar(reverse(b2[i]));
+            char high2 = toChar(reverse(b2[i+1]));
 
 //            low = reverse(low);
 //            high = reverse(high);
 
-            int channel1Data = channel1msb << 8 | channel1lsb;
-            int channel2Data = channel2msb << 8 | channel2lsb;
-            b[i - soundStart + 0] = (b1[i]);
-            b[i - soundStart + 1] = (b1[i+1]);
-            b[i - soundStart + 2] = (b1[i+2]);
-            b[i - soundStart + 3] = (b1[i+3]);
-
-
-
-
             //We need to convert to 2's complement here instead of direct casting
-//            int combined1 = (low1 << 16) | (high1 << 24);
-//            int combined2 = (low2 << 16) | (high2 << 24);
+            int combined1 = (low1 << 16) | (high1 << 24);
+            int combined2 = (low2 << 16) | (high2 << 24);
 //            int combined2 = 0;
 
-//            int combined = (combined1 + combined2) - combined2;
+            int combined = (combined1 + combined2) - combined2;
 
 //            if(combined - combined2 != combined1){
 //                System.out.println("Overflow");
 //            }
 
-            /* Worked for wav
             int shifted = combined >> 16;
             b[i] = reverse((byte) shifted);
             shifted >>= 8;
             b[i+1] = reverse((byte) shifted);
-*/
+
 //            if(b[i] != b1[i] || b[i+1] != b1[i+1]){
 //                System.out.println("Error converting number");
 //            }
@@ -270,7 +256,7 @@ public class Metronome implements IMusicClipPlayer{
 
         line.start();
 
-        int total = 0;
+        int total = starting;
 
         for (int i = 0; i < 5; i++) {
 
@@ -282,7 +268,7 @@ public class Metronome implements IMusicClipPlayer{
             }
 
             //Write remaining frames to the line
-            //line.write(b, total, (b.length - total) / 4 * 4);
+            line.write(b, total, (b.length - total) / 4 * 4);
 
             long finishTIme = System.currentTimeMillis();
 
