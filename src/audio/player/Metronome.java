@@ -10,15 +10,46 @@ public class Metronome implements IMusicClipPlayer{
     Clip clip;
     SourceDataLine line;
 
+    public int loadInt(byte buff[], int offset, boolean bigEndian){
+        if(bigEndian){
+            int result = (0xFF & buff[offset]) << 24;
+            result += (0xFF & buff[offset + 1])  << 16;
+            result += (0xFF & buff[offset + 2]) << 8;
+            result += (0xFF & buff[offset + 3]);
+            return result;
+        } else {
+            int result = (0xFF & buff[offset + 3]) << 24;
+            result += (0xFF & buff[offset + 2])  << 16;
+            result += (0xFF & buff[offset + 1]) << 8;
+            result += (0xFF & buff[offset]);
+            return result;
+        }
+    }
+
+    public int load16bits(byte buff[], int offset, boolean bigEndian){
+        if(bigEndian){
+            int result = (0xFF & buff[offset]) << 24;
+            result += (0xFF & buff[offset + 1])  << 16;
+            return result >> 16;
+        } else {
+            int result = (0xFF & buff[offset + 1]) << 24;
+            result += (0xFF & buff[offset])  << 16;
+            return result >> 16;
+        }
+    }
 
     public Metronome() throws IOException, UnsupportedAudioFileException, LineUnavailableException, InterruptedException {
+        int ia = loadInt(new byte[]{-4,2,-2,4}, 0, true);
+        int ib = loadInt(new byte[]{0,1,2,-3}, 0, false);
+
+
         Mixer.Info[] infos = AudioSystem.getMixerInfo();
 
         AudioFormat audioFormat = new AudioFormat(8000, 16, 1, true, false);
 
         Mixer mixer = null;
 
-        AudioInputStream stream = AudioSystem.getAudioInputStream(new File("Test Run.wav"));
+        AudioInputStream stream = AudioSystem.getAudioInputStream(new File("HughTestTrack1.wav"));
 
         clip = AudioSystem.getClip();
         clip.open(stream);
@@ -89,16 +120,20 @@ public class Metronome implements IMusicClipPlayer{
 
         int totalToRead = 999999999;
 
-        FileInputStream loop1 = new FileInputStream(new File("Test Run.wav"));
-        FileInputStream loop2 = new FileInputStream(new File("clip2Loop.wav"));
+//        FileInputStream loop1 = new FileInputStream(new File("clip1.wav"));
+//        FileInputStream loop2 = new FileInputStream(new File("clip1Loop.wav"));
+        FileInputStream loop1 = new FileInputStream(new File("HughTestTrack1.wav"));
+        FileInputStream loop2 = new FileInputStream(new File("HughFroggyTest1.wav"));
+//        FileInputStream loop1 = new FileInputStream(new File("HughFroggyTest1.wav"));
+//        FileInputStream loop2 = new FileInputStream(new File("HughTestTrack1.wav"));
 
         //consume the header
 //        fileInputStream.read(header, 0, header.length);
 
         long bytesPerSeond = (int) (line.getFormat().getFrameRate() * line.getFormat().getFrameSize());
         int numBytesToRead = 1024;
-        byte b1[] = loop1.readAllBytes();
-        byte b2[] = loop2.readAllBytes();
+        byte b1[] = loop1.readNBytes(1048576);
+        byte b2[] = loop2.readNBytes(1048576);
 
 
         int size = b1.length;
@@ -109,7 +144,7 @@ public class Metronome implements IMusicClipPlayer{
         byte b[] = new byte[size];
 
 
-        int subchunk1Size = b1[17] << 24 | b1[18] << 16 | b1[19] << 8 | b1[20];
+        int subchunk1Size = (0xFF & b1[17]) | (0xFF & b1[18]) << 8 | (0xFF & b1[19] << 16) | (0xFF & b1[20]) << 24;
 
         int starting = 44;
         for (int i = starting; i < size - 2; i+= 2) {
@@ -152,18 +187,18 @@ public class Metronome implements IMusicClipPlayer{
 //            high = reverse(high);
 
             //We need to convert to 2's complement here instead of direct casting
-            int combined1 = (low1 << 16) | (high1 << 24);
-            int combined2 = (low2 << 16) | (high2 << 24);
+            int combined1 = load16bits(b1, i, false);
+            int combined2 = load16bits(b2, i, false);
 //            int combined2 = 0;
 
             //Multiplication and Division
-            int combined = combined1 / 2 + combined2 * 2;
+            int combined = combined1 + combined2;
 
 //            if(combined - combined2 != combined1){
 //                System.out.println("Overflow");
 //            }
 
-            int shifted = combined >> 16;
+            int shifted = combined;
 //            b[i] = b2[i];
             b[i] = (byte) shifted;
             shifted >>= 8;
@@ -220,10 +255,7 @@ public class Metronome implements IMusicClipPlayer{
 
         line.start();
 
-        int total;
-
-        System.out.println("Clip format " + audioFormat);
-        System.out.println("Stream format " + line.getFormat());
+        int total = starting;
 
         for (int i = 0; i < 5; i++) {
 
