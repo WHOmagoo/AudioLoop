@@ -103,15 +103,15 @@ public class Metronome implements IMusicClipPlayer{
         int totalToRead = 999999999;
 
         FileInputStream loop1 = new FileInputStream(new File("01 Jingle Bells.aiff"));
-        FileInputStream loop2 = new FileInputStream(new File("01 Jingle Bells.aiff"));
+        FileInputStream loop2 = new FileInputStream(new File("02 Winter Wonderland.aiff"));
 
         //consume the header
 //        fileInputStream.read(header, 0, header.length);
 
         long bytesPerSeond = (int) (line.getFormat().getFrameRate() * line.getFormat().getFrameSize());
-        int numBytesToRead = 1024;
-        byte b1[] = loop1.readAllBytes();
-        byte b2[] = loop2.readAllBytes();
+        int numBytesToRead = 1024 * 32;
+        byte b1[] = loop1.readNBytes(1048576);
+        byte b2[] = loop2.readNBytes(1048576);
 
 
         int size = b1.length;
@@ -131,7 +131,7 @@ public class Metronome implements IMusicClipPlayer{
 //        chkId = getId(b1, 17 + (int) chunkSize);
 
         int soundCOunt = 0;
-        int soundStart = 0;
+        int soundStart = 3;
         long soundSize = 0;
 
         for(int i = 0; i < b1.length - 4; i++){
@@ -145,14 +145,16 @@ public class Metronome implements IMusicClipPlayer{
                 System.out.println(soundSize + " " + offset + " " + sndsize);
                 soundCOunt++;
                 i+= 15 + sndsize;
+                soundStart = i + 16;
                 break;
             }
         }
 
+        soundSize = b1.length;
         int subchunk1Size = b1[17] << 24 | b1[18] << 16 | b1[19] << 8 | b1[20];
 
         int starting = 44;
-        for (int i = soundStart; i < soundSize; i+= 4) {
+        for (int i = soundStart; i < b1.length - 2; i+= 2) {
 //            char customByte = 83;
 //            char reversed = reverse(customByte);
 //            char other = reverse((char) 73);
@@ -182,30 +184,31 @@ public class Metronome implements IMusicClipPlayer{
 //            byte resultLow = reverse(bLittle);
 //            byte resultHigh = reverse(newBBig);
 
-            char low1 =  toChar(reverse(b1[i]));
-            char high1 = toChar(reverse(b1[i+1]));
+            char low1 =  toChar(b1[i]);
+            char high1 = toChar(b1[i+1]);
 
-            char low2 = toChar(reverse(b2[i]));
-            char high2 = toChar(reverse(b2[i+1]));
+            char low2 = toChar(b2[i]);
+            char high2 = toChar(b2[i+1]);
 
 //            low = reverse(low);
 //            high = reverse(high);
 
             //We need to convert to 2's complement here instead of direct casting
-            int combined1 = (low1 << 16) | (high1 << 24);
+            int combined1 = (low1 << 16) | ( high1 << 24);
             int combined2 = (low2 << 16) | (high2 << 24);
 //            int combined2 = 0;
 
-            int combined = (combined1 + combined2) - combined2;
+            int combined = (combined1 + combined2) / 2;
+
 
 //            if(combined - combined2 != combined1){
 //                System.out.println("Overflow");
 //            }
 
-            int shifted = combined >> 16;
-            b[i] = reverse((byte) shifted);
-            shifted >>= 8;
-            b[i+1] = reverse((byte) shifted);
+            b[i+1] = (byte) (0xFF & (combined >> 16));
+            b[i] = (byte) (0xFF & (combined >> 24));
+//            b[i - soundStart] = b1[i];
+//            b[i+1 - soundStart] = b1[i+1];
 
 //            if(b[i] != b1[i] || b[i+1] != b1[i+1]){
 //                System.out.println("Error converting number");
